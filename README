@@ -22,3 +22,4 @@ DEPENDENCIES
 - Numpy (http://numpy.scipy.org/)
 - Matplotlib (http://matplotlib.sourceforge.net/)
 - LibSVM (http://www.csie.ntu.edu.tw/~cjlin/libsvm/)
+- roc.py (from pyML Toolbox http://pyml.sourceforge.net/)
