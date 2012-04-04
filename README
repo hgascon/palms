@@ -1,7 +1,8 @@
 
-PALMS Data Partition and Automatic LibSVM Model Selection
+PALMS: Data Partition and Automatic LibSVM Model Selection
+=========================================================
 
-Palms script allows two functioning modes: basic and advanced. In basic mode, data from all classes is used on training, validation and testing. In advanced mode, malicious data belonging to different classes is used on training, validation and testing.
+Palms script allows two functioning modes: basic and advanced. In basic mode, data from all classes, bening and malicious, is used on training, validation and testing. In advanced mode, malicious data belonging to different classes is used on training, validation and testing.
 
 The following are two examples of use:
  
@@ -14,3 +15,10 @@ Advanced Mode: Run experiment with different classes of malicious data in traini
 
 ./palms.py -f data.libsvm -o data_advanced.palms -m 1
 ./palms.py -g 500 -s data_advanced.palms.scores
+
+For more information on use, just run the script with option -h or --help.
+
+DEPENDENCIES
+- Numpy (http://numpy.scipy.org/)
+- Matplotlib (http://matplotlib.sourceforge.net/)
+- LibSVM (http://www.csie.ntu.edu.tw/~cjlin/libsvm/)

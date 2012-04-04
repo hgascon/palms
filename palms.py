@@ -10,7 +10,6 @@ import operator
 import numpy as np
 import matplotlib.pyplot as plt
 from svmutil import *
-from mleval import *
 from optparse import OptionParser
 from eval import *
 from roc import *
@@ -312,7 +311,7 @@ def avg_auc(dic_results):
     return avg_auc_list,std_auc_list
 
 def hist_auc_average(auc_list,files):
-    """ """
+
     N = 5 
     ind = np.arange(N)
     width = 0.4
@@ -342,7 +341,7 @@ def hist_auc_average(auc_list,files):
     plt.show()
 
 def hist_auc(auc_list,files):
-    """ """
+
     N = len(auc_list[0][0])
     ind = np.arange(N)
     width = 0.13
@@ -372,7 +371,6 @@ def hist_auc(auc_list,files):
     plt.show()
 
 def autolabel(rects,ax):
-    """ """
 
     # attach some text labels
     for rect in rects:
@@ -428,10 +426,6 @@ def calculate_scores(data, w, file):
     for l in range(len(data[0])):
         scores = aggregate(data[3][l], data[1][l], w)
         rocs.append((scores, data[2][l]))
-        #print data[0][l]
-        #fpc, tpc, auc = calculate_auc(scores, data[2][l])
-        #print auc
-        #auc_a.append(auc)
 
     #The vertical averaged ROC of all experiments is saved
     fpr, tpr, auc = roc_VA(rocs)
@@ -542,12 +536,15 @@ if __name__ == "__main__":
                       help="PALM files with ROC data for different SVM scores aggregation windows (default %default)")
     (options, args) = parser.parse_args()
 
-    if options.libsvm_file == "-" and options.palms_file == "-" and options.avg_palms_file == "-" and options.comp_palms_files == "-" and options.scores_palms_file == "-" and options.roc_palms_files == "-":
+    if (options.libsvm_file == "-" and options.palms_file == "-" 
+        and options.avg_palms_file == "-" and options.comp_palms_files == "-"
+        and options.scores_palms_file == "-" and options.roc_palms_files == "-"):
         parser.print_help()
         sys.exit(1)
 
     if options.libsvm_file != "-" and options.palms_file != "-":
-        dic_results = model_learning(options.libsvm_file, options.palms_file, options.mode)
+        dic_results = model_learning(options.libsvm_file, options.palms_file,
+                                     options.mode)
         model_selection(dic_results)
 
     elif options.best_palms_file != "-":
@@ -575,7 +572,8 @@ if __name__ == "__main__":
         
     elif options.scores_palms_file != "-":
         scores_data = read_scores_file(options.scores_palms_file)
-        calculate_scores(scores_data,options.aggregation_size, options.scores_palms_file)
+        calculate_scores(scores_data,options.aggregation_size,
+                         options.scores_palms_file)
 
     elif options.roc_palms_files != "-":
         roc_files = options.roc_palms_files.split(",")
