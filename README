@@ -1,0 +1,16 @@
+
+PALMS Data Partition and Automatic LibSVM Model Selection
+
+Palms script allows two functioning modes: basic and advanced. In basic mode, data from all classes is used on training, validation and testing. In advanced mode, malicious data belonging to different classes is used on training, validation and testing.
+
+The following are two examples of use:
+ 
+Basic Mode: Run experiment with all classes of malicious data in training, validation and testing 
+
+./palms.py -f data.libsvm -o data_basic.palms -m 0
+./palms.py -g 500 -s data_basic.palms.scores
+
+Advanced Mode: Run experiment with different classes of malicious data in training, validation and testing 
+
+./palms.py -f data.libsvm -o data_advanced.palms -m 1
+./palms.py -g 500 -s data_advanced.palms.scores
